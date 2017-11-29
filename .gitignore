@@ -1,5 +1,3 @@
 ﻿.idea/
 node_modules/
 dist/
-.project
-package-lock.json
