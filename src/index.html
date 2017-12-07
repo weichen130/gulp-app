@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>广告页</title>
+    <!-- 测试环境 -->
+    <link rel="stylesheet" href="styles/adapter.css" />
+    <link rel="stylesheet" href="styles/index.css" />
+    <!--生产环境-->
+    <!--<link rel="stylesheet" href="styles/all-built.min.css" />-->
+</head>
+<body>
+<section>
+    <button>GO</button>
+</section>
+<script type="text/javascript" src="lib/zepto/zepto.js"></script>
+<script>
+$(function(){
+    $('button').on('click',function(){
+        window.location.href='templates/main.html';
+    });
+});
+</script>
+</body>
+</html>
