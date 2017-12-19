@@ -44,12 +44,12 @@ gulp.task('scripts', function() {
     gulp.src(['src/scripts/**/*.js'])
         .pipe(uglify())
         .pipe(gulp.dest('dist/src/scripts'))
-        .pipe(notify({ message: 'dist/src/scripts' }))
+        .pipe(notify({ message: 'dist/src/scripts' }));
 
     gulp.src(['src/templates/**/*.js'])
         .pipe(uglify())
         .pipe(gulp.dest('dist/src/templates'))
-        .pipe(notify({ message: 'dist/src/templates' }))
+        .pipe(notify({ message: 'dist/src/templates' }));
 
 });
 

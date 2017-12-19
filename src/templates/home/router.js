@@ -13,5 +13,4 @@ define(['app'],function(app){
 
         $urlRouterProvider.when("","/main/home");
     }]);
-    app.co
 });
