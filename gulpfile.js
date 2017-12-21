@@ -8,6 +8,8 @@ var gulp = require('gulp'),
     rename = require('gulp-rename'),//文件重命名
     concat = require('gulp-concat'),//合并js文件
     notify = require('gulp-notify'),//更改提醒
+    amdOptimize = require('amd-optimize'),
+    requirejsOptimize = require('gulp-requirejs-optimize'),
     cache = require('gulp-cache'),//图片缓存，只有图片替换了才压缩
     livereload = require('gulp-livereload'),//自动刷新页面
     del = require('del'),//清除文件
@@ -62,17 +64,36 @@ gulp.task('libs',function(){
 
 gulp.task('concatMinJs',function(){
     console.log("合并、压缩js");
-    var homeScripts=[
-        'src/scripts/app.js',
-        'src/templates/home/router.js',
-        'src/templates/home/service/homeService.js',
-        'src/templates/home/controller/home.js'];
-    return gulp.src(homeScripts)
-        .pipe(concat('home-built'))
-        .pipe(rename({suffix: '.min.js'}))
+
+    return gulp.src("src/scripts/main.js")
+        .pipe(requirejsOptimize({
+            optimize:"none",                                //- none为不压缩资源
+            //findNestedDependencies: true,                 //- 解析嵌套中的require
+            paths:{
+                angular:'../lib/angularJs/angular',
+                angularRoute:'../lib/angular-ui-router/angular-ui-router',
+                zepto:'../lib/zepto/zepto',
+                jquery:'../lib/jQuery/jquery-3.2.1.min',
+                bootstrap:'../lib/bootstrap/js/bootstrap',
+                reg:'../scripts/reg',
+                app:'../scripts/app'
+            },
+            shim:{
+                angular:{
+                    exports: 'angular'
+                },
+                angularRoute:{
+                    deps:["angular"],
+                    exports: 'uiRoute'
+                },
+                bootstrap:{
+                    deps:["jquery"],
+                }
+            }
+        }))
+        .pipe(rename("main.min.js"))
         .pipe(uglify())
-        .pipe(gulp.dest('dist/src/app'))
-        .pipe(notify({ message: 'dist/src/scripts' }));
+        .pipe(gulp.dest('dist/src/app'));
 });
 
 //压缩css
@@ -124,4 +145,4 @@ gulp.task('default',['startApp','serve']);
 
 gulp.task('test',['delDist','images','libs','scripts','minCss','copyHtml','serve']);
 
-gulp.task('production',['delDist','concatMinCss','libs','concatMinJs','images','copyHtml','serve']);
+gulp.task('production',['delDist','minCss','libs','concatMinJs','images','copyHtml','serve']);

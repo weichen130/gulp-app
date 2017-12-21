@@ -6,7 +6,7 @@ require.config({
         zepto:'../lib/zepto/zepto',
         jquery:'../lib/jQuery/jquery-3.2.1.min',
         bootstrap:'../lib/bootstrap/js/bootstrap',
-        controllers:'../templates/home/module',
+        reg:'../scripts/reg',
         app:'../scripts/app'
     },
     shim:{
@@ -22,7 +22,7 @@ require.config({
         }
     }
 });
-require(['angular','angularRoute','jquery','zepto','bootstrap','app','controllers'],function(angular,angularRoute,$,zepto,bootstrap,app,controllers){
+require(['angular','angularRoute','jquery','zepto','bootstrap','app','reg'],function(angular,angularRoute,$,zepto,bootstrap,app,reg){
     'use strict';
     angular.bootstrap(document,['myapp']);
 });

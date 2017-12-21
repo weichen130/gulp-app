@@ -1,4 +1,4 @@
 define([
-    './home/router',
-    './home/controller/home',
+    './router',
+    './controller/home',
 ],function(){});
