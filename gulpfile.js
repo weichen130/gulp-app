@@ -59,7 +59,7 @@ gulp.task('libs',function(){
         .pipe(gulp.dest('dist/src/lib'))
         .pipe(notify({ message: 'dist/src/lib' }));
 });
-
+//添加注释
 gulp.task('concatMinJs',function(){
     console.log("合并、压缩js");
 
