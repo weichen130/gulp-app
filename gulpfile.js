@@ -55,6 +55,7 @@ gulp.task('scripts', function() {
 
 gulp.task('libs',function(){
     console.log("copy libs");
+
     return gulp.src(['src/lib/**/*.*'])
         .pipe(gulp.dest('dist/src/lib'))
         .pipe(notify({ message: 'dist/src/lib' }));
