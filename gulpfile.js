@@ -30,7 +30,7 @@ gulp.task('copyHtml',function(){
 });
 
 //图片压缩
-gulp.task('images', function() {
+gulp.task('images', function(){
   console.log("图片压缩");
   return gulp.src('src/images/**/*.*')
     .pipe(cache(imagemin({ optimizationLevel: 5, progressive: true, interlaced: true })))
@@ -115,7 +115,7 @@ gulp.task('concatMinCss', function() {
 });
 
 // 静态服务器
-gulp.task('serve', function() {
+gulp.task('serve', function(){
    	// 开始一个Browsersync静态文件服务器
 
     browserSync.init({
@@ -132,8 +132,8 @@ gulp.task('serve', function() {
 
 //监听文件自动刷新
 gulp.task('watch',function(){
-    gulp.watch("src/**/*.html", ['startApp']);
-    gulp.watch("src/styles/**/*.css", ['styles']);
+    gulp.watch("src/**/*.html", ['copyHtml']);
+    gulp.watch("src/styles/**/*.css", ['minCss']);
     gulp.watch("src/services/**/*.js", ['scripts']);
     gulp.watch("src/scripts/**/*.js", ['scripts']);
     gulp.watch("src/images/**/*.*", ['images']);
